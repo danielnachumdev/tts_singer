@@ -1,6 +1,7 @@
 from typing import Optional
 import pyttsx3
 from pyttsx3 import Engine
+from danielutils import atomic
 from ...consts import WPM_VALUES
 
 
@@ -12,11 +13,13 @@ class Speaker:
     def __init__(self, engine: Optional[Engine] = None) -> None:
         self.engine = engine if engine is not None else Speaker._create_engine()
 
+    @atomic
     def say(self, sentence: str) -> "Speaker":
         self.engine.say(sentence)
         self.engine.runAndWait()
         return self
 
+    @atomic
     def save(self, sentence: str, path: str) -> None:
         self.engine.save_to_file(sentence, path)
         self.engine.runAndWait()

@@ -1,5 +1,5 @@
 pyttsx3
 danielutils
 numpy
-mediapy
 scipy
+matplotlib
